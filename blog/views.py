@@ -83,12 +83,13 @@ def login(request):
     return render(request, 'login.html', {'form': form})
 
 def logout_view(request):
-    logout(request)
     # messages.info(request, 'You have bee')
-    return redirect('logout_message')
+    return render(request, 'logout_message.html')
 
 def logout_message(request):
-    return render(request, 'logout_message.html')
+    logout(request)
+    return redirect('login')
+
 
 @login_required
 def profile(request):
