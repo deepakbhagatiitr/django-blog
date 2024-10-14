@@ -1,0 +1,15 @@
+python manage.py shell
+
+
+from django.contrib.auth.models import User
+
+# Get the superuser by username (replace 'admin' with your superuser's username)
+user = User.objects.get(username='admin')
+
+# Set a new password
+user.set_password('new_password')
+
+# Save the changes
+user.save()
+
+print(f"Password reset successful for superuser: {user.username}")

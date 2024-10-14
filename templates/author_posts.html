@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ author.username }}'s Posts - My Blog{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-6 max-w-4xl">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">{{ author.username }}'s Posts</h1>
+
+    {% if posts %}
+    <div class="grid grid-cols-1 gap-8"> <!-- Increased gap between posts -->
+        {% for post in posts %}
+        <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-4">
+            <h5 class="text-xl font-semibold text-gray-800">{{ post.title }}</h5>
+            <p class="text-gray-600">{{ post.content|truncatewords:50 }}</p>
+            <div class="mt-4">
+                <a href="{% url 'post_detail' post.id %}" class="text-indigo-600 hover:text-indigo-800 font-medium">Read
+                    more</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <nav class="flex justify-center mt-8">
+        <ul class="flex items-center space-x-2">
+            {% if posts.has_previous %}
+            <li>
+                <a class="py-2 px-4 text-gray-600 hover:bg-gray-200 rounded-lg transition duration-200 text-lg"
+                    href="?page=1" aria-label="First">&laquo;&laquo;</a>
+            </li>
+
+            <!-- Previous Page Link -->
+            <li>
+                <a class="py-2 px-4 text-gray-600 hover:bg-gray-200 rounded-lg transition duration-200 text-lg"
+                    href="?page={{ posts.previous_page_number }}" aria-label="Previous">&laquo;</a>
+            </li>
+            {% endif %}
+
+            {% for i in posts.paginator.page_range %}
+            {% if posts.number == i %}
+            <li>
+                <span class="py-2 px-4 bg-indigo-600 text-white rounded-lg">{{ i }}</span>
+            </li>
+            {% else %}
+            <li>
+                <a class="py-2 px-4 text-gray-600 hover:bg-gray-100 rounded-lg" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if posts.has_next %}
+            <li>
+                <a class="py-2 px-4 text-gray-600 hover:bg-gray-200 rounded-lg transition duration-200 text-lg"
+                    href="?page={{ posts.next_page_number }}" aria-label="Next">&raquo;</a>
+            </li>
+            <li>
+                <a class="py-2 px-4 text-gray-600 hover:bg-gray-200 rounded-lg transition duration-200 text-lg"
+                    href="?page={{ posts.paginator.num_pages }}" aria-label="Last">&raquo;&raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% else %}
+    <p class="text-center text-gray-500 mt-4">No posts available for this author at the moment!</p>
+    {% endif %}
+</div>
+{% endblock %}

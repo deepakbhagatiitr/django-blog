@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - My Blog{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-6 max-w-3xl">
+    <h2 class="text-3xl font-semibold text-center text-gray-800">{{ post.title }}</h2>
+    <p class="text-sm text-gray-500 text-center mt-1">Posted by {{ post.author.username }} on {{ post.date }}</p>
+
+    <!-- Show Author's Image -->
+    {% if post.author.profile.image %}
+    <div class="flex justify-center mt-2">
+        <img src="{{ post.author.profile.image.url }}" alt="{{ post.author.username }}'s Image" class="rounded-full"
+            style="width: 40px; height: 40px;">
+    </div>
+    {% endif %}
+
+    <hr class="my-4 border-gray-300">
+
+    <div class="mt-4 text-gray-700">
+        <p class="whitespace-pre-line">{{ post.content }}</p> <!-- Preserve line breaks -->
+    </div>
+
+    <!-- Check if the current user is the post author, then show the 'Update Post' and 'Delete Post' buttons -->
+    {% if user == post.author %}
+    <div class="flex justify-center mt-4 space-x-3">
+        <a href="{% url 'update_post' post.id %}"
+            class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition duration-200">
+            Update Post
+        </a>
+        <a href="{% url 'post_delete' post.id %}"
+            class="bg-red-200 text-red-700 px-4 py-2 rounded-md hover:bg-red-300 transition duration-200">
+            Delete Post
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="flex justify-center mt-6">
+        <a href="{% url 'home' %}"
+            class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+            Back to Posts
+        </a>
+    </div>
+</div>
+{% endblock %}

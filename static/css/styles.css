@@ -1,0 +1,46 @@
+/* Custom max-width for container */
+.custom-container {
+    max-width: 1200px;
+}
+
+/* Add some custom styles */
+body {
+    background-color: #f8f9fa;
+    /* Light background color */
+}
+
+footer {
+    margin-top: 30px;
+    padding: 20px 0;
+    background-color: #f1f1f1;
+}
+
+.sidebar {
+    background-color: #ffffff;
+    /* White background for sidebar */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item {
+    background-color: transparent;
+    /* Transparent background for list items */
+}
+
+.nav-link {
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #007bff;
+    /* Change link color on hover */
+}
+
+.btn-primary {
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}

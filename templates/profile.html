@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-12 max-w-xl">
+    <h2 class="text-2xl font-semibold text-gray-700 text-center">User Profile</h2>
+    <div class="bg-white border border-gray-200 rounded-md mt-6 shadow-sm">
+        <div class="p-6 text-center">
+            <!-- Display Success Messages -->
+            {% if messages %}
+            <ul class="list-none mb-4">
+                {% for message in messages %}
+                <li class="px-4 py-2 bg-green-100 text-green-700 rounded-lg shadow-sm mb-2">
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <!-- Display the profile image -->
+            <img src="{{ user.profile.image.url }}" alt="Profile Image" class="rounded-full mx-auto mb-4"
+                style="width: 120px; height: 120px; object-fit: cover;">
+            <h5 class="text-xl font-medium text-gray-800">Welcome, {{ user.username }}!</h5>
+            <p class="text-sm text-gray-500 mt-2">You can view and update your account details here.</p>
+            <div class="border-t border-gray-200 my-4"></div>
+            <h6 class="text-lg font-medium text-gray-600">Account Details:</h6>
+            <ul class="mt-3 text-gray-600 space-y-2">
+                <li class="flex justify-between p-3 bg-gray-50 rounded-md">
+                    <span>Username:</span>
+                    <span>{{ user.username }}</span>
+                </li>
+                <li class="flex justify-between p-3 bg-gray-50 rounded-md">
+                    <span>Email:</span>
+                    <span>{{ user.email }}</span>
+                </li>
+                <!-- Add more user-related fields here if needed -->
+            </ul>
+            <a href="{% url 'edit_profile' %}"
+                class="inline-block mt-5 px-4 py-2 bg-gray-700 text-white text-sm font-medium rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">Edit
+                Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!-- about.html -->
+{% extends 'base.html' %}
+
+{% block title %}About Us - My Blog{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-10 max-w-3xl">
+    <!-- Heading -->
+    <h2 class="text-3xl font-semibold text-gray-800 text-center mb-8">About Our Blog</h2>
+
+    <!-- Introduction Paragraph -->
+    <p class="text-base text-gray-600 leading-relaxed mb-6">
+        Welcome to our blog, where we share insightful content across various topics, including technology, lifestyle,
+        personal development, and travel. Our goal is to provide valuable information, engage readers, and create
+        a space for thoughtful discussion.
+    </p>
+
+    <!-- Purpose & Mission Section -->
+    <p class="text-base text-gray-600 leading-relaxed mb-6">
+        Our team believes in the impact of well-written content and meaningful stories. Each article is carefully
+        crafted to offer our readers useful insights and knowledge. Whether you're looking for in-depth tutorials,
+        professional advice, or simply an informative read, we aim to cater to your interests.
+    </p>
+
+    <!-- Closing Paragraph -->
+    <p class="text-base text-gray-600 leading-relaxed mb-6">
+        Thank you for visiting our blog. We appreciate your time and hope you find our posts valuable. Feel free to
+        connect with us through the comments or on social media to share your thoughts and ideas.
+    </p>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-8">
+        <a href="/"
+            class="bg-gray-800 text-white px-5 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition duration-200">
+            Visit Our Blog
+        </a>
+    </div>
+</div>
+{% endblock %}
